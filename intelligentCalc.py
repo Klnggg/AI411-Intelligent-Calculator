@@ -151,9 +151,10 @@ class IntelligentCalculator:
     def parse_special_patterns(self, text):
         patterns = {
             r"[sum\s+of|add]\s+([\d\s,]+)\s+and\s+([\d\s,]+)": "+",
-            r"subtract\s+([\d\s,]+)\s+from\s+(\d+)": "-",
-            r"multiply\s+([\d\s,]+)\s+by\s+(\d+)": "*",
-            r"divide\s+([\d\s,]+)\s+by\s+(\d+)": "/",
+            r"subtract\s+([\d\s,]+(?:\s+and\s+[\d\s,]+)?)\s+from\s+(\d+)": "-",
+            r"multiply\s+([\d\s,]+(?:\s+and\s+[\d\s,]+)?)\s+by\s+(\d+)": "*",
+            r"divide\s+([\d\s,]+(?:\s+and\s+[\d\s,]+)?)\s+by\s+(\d+)": "/",
+            r"power\s+of\s+(\d+)\s+to\s+(\d+)": "**",
         }
         
         try:
