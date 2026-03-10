@@ -3,6 +3,7 @@ import random
 import re
 import json
 import difflib
+import os
 from datetime import datetime
 from text2digits import text2digits
 from sty import fg, bg, ef
@@ -27,8 +28,14 @@ class IntelligentCalculator:
         self.t2d = text2digits.Text2Digits()
 
     def load_history(self):
-        with open("history.txt", "r", encoding="utf-8") as f:
-            return f.read().splitlines()
+        try:
+            with open("history.txt", "r", encoding="utf-8") as f:
+                return f.read().splitlines()
+        except FileNotFoundError:
+            if not os.path.exists("history.txt"):
+                with open("history.txt", "w", encoding="utf-8"):
+                    pass
+            return []
 
     def load_natural_language(self, path):
         with open(path, "r", encoding="utf-8") as f:
